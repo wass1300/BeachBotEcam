@@ -1,0 +1,12 @@
+%gestion
+\section{Introduction}
+Désormais, une fois que l'on aura la base (châssis + moteurs intégrés), nous aurons un robot capable de rouler. Mais rouler vers où? Nous ne savons pas encore le lui dire. C'est pourquoi en P2, nous devrons permettre au robot de se repérer et de savoir ce qu'il voudra faire. Pour cela nous aurons plusieurs techniques liées ensemble. D'une part OpenCV pour gérer une caméra, le Line Tracking pour faire une action de base (les clapets) et des ultrasons pour s'arrêter avant de cogner un objet ou l'autre robot.
+
+\section{OpenCV}
+OpenCV est un système de traitement d'image qui tournera sur la Raspberry Pi. Il permet de détecter les couleurs et les contours des objets du plateau. Il permettra de savoir où nous sommes et où nous voulons aller. Malheureusement, il est possible que notre image seule ne nous permette pas de bien nous localiser. Dès lors nous devrons penser à un système de détection de la position absolue sur la table. Cela est faisable en connaissant notre position via une triangulation de signaux. En effet, nous pouvons mettre jusqu'à 3 émetteurs sur le bord du plateau d'Eurobot.
+
+\section{Line tracking}
+Ensuite, nous utiliserons un Line Tracking dans un premier temps pour pouvoir faire une action simple, fermer les clapets. Cela ce fait grâce à deux capteurs qui détectent la ligne noire. Si le capteur de gauche détecte la ligne noire, alors il faut tourner un peu à gauche et inversement pour la droite. De plus, si il détecte une ligne à gauche et à droite, alors nous sommes certainement sur une intersection et nous devrons choisir de tourner à gauche ou à droite.
+
+\section{Pince}
+Les actions de la pince devrons encore être codées. Elle devra pouvoir prendre une balle, un verre, un plot, monter, descendre sur commande du maitre.

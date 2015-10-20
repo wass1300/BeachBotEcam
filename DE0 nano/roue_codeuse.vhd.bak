@@ -1,0 +1,144 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_signed.all;
+
+entity roue_codeuse is 
+	port (
+		icodeurA, icodeurB : in std_logic;
+		iRst, iClk : in std_logic;
+		oImp : out std_logic;
+		oSens : out std_logic;
+		oDebug : out std_logic_vector(1 downto 0);
+		Led : out std_logic
+	);
+end entity;
+
+architecture rtl of roue_codeuse is 
+type statetype is (S0,S1,S2,S3);
+signal state, nextstate : statetype;
+signal bSens : std_logic; -- 0 si on décrémente, 1 si on incrémente
+signal bImp : std_logic; -- impulsion à sortir
+
+component FiltreHall is
+	port(
+		clock_in 	: in	std_logic;  -- clock 50MHz
+		reset	 		: in	std_logic;  -- reset
+		Codeur	 	: in	std_logic;  -- entrée du codeur
+		CodeurFil	: out	std_logic   -- sortie filtrée
+	);
+end component;
+
+signal bIA , bIB : std_logic;
+
+begin 
+	U0 : FiltreHall port map( clock_in => iClk, reset => iRst , Codeur => iCodeurA, CodeurFil => bIA );
+	U1 : FiltreHall port map(  clock_in => iClk, reset => iRst , Codeur => iCodeurB, CodeurFil => bIB);
+
+	synchro : process(iClk,iRst) 
+	begin 
+		if iRst = '0' then 
+			state <= S0;
+		elsif rising_edge(iClk) then 
+			state <= nextstate;
+		end if;
+	end process;
+
+	fsm : process (state, bIA, bIB, iRst) 
+	variable Count : std_logic_vector(31 downto 0);
+	begin 
+		if iRst = '0' then 
+			Count := (others => '0');
+			bImp <= '0';
+			bSens <= '0';
+			nextstate <= S0;
+		else
+			case state is 
+				when S0 => 
+					if ((bIA = '0') and (bIB = '1')) then
+						Count := Count -1;
+						bImp <=  not bImp;
+						bSens <= '0';
+						nextstate <= S3;
+						
+					elsif ((bIA = '1') and (bIB = '0'))then 
+						Count := Count +1;
+						bImp <= not bImp;
+						bSens <= '1';
+						nextstate <= S1;
+					else 
+						Count := Count;
+						bImp <= bImp;
+						bSens <= bSens;
+						nextstate <= S0;
+					end if;
+				when S1 => 
+					if ((bIA = '0') and (bIB = '0')) then
+						Count := Count -1;
+						bImp <= not bImp;
+						bSens <= '0';
+						nextstate <= S0;
+					elsif ((bIA = '1') and (bIB = '1'))then 
+						Count := Count +1;
+						bImp <= not bImp;
+						bSens <= '1';
+						nextstate <= S2;
+					else 
+						Count := Count;
+						bImp <= bImp;
+						bSens <= bSens;
+						nextstate <= S1;
+					end if;
+				when S2 => 
+					if ((bIA = '1') and (bIB = '0')) then
+						Count := Count -1;
+						bImp <= not bImp;
+						bSens <= '0';
+						nextstate <= S1;
+					elsif ((bIA = '0') and (bIB = '1'))then 
+						Count := Count +1;
+						bImp <= not bImp;
+						bSens <= '1';
+						nextstate <= S3;
+					else 
+						Count := Count;
+						bImp <= bImp;
+						bSens <= bSens;
+						nextstate <= S2;
+					end if;
+				when S3 => 
+					if ((bIA = '1') and (bIB = '1')) then
+						Count := Count -1;
+						bImp <= not bImp;
+						bSens <= '0';
+						nextstate <= S2;
+					elsif ((bIA = '0') and (bIB = '0'))then 
+						Count := Count +1;
+						bImp <= not bImp;
+						bSens <= '1';
+						nextstate <= S0;
+					else 
+						Count := Count;
+						bImp <= bImp;
+						bSens <= bSens;
+						nextstate <= S3;
+					end if;
+				when others => 
+					Count := Count;
+					bImp <= bImp;
+					bSens <= bSens;
+					nextstate <= nextstate;
+			end case;
+		end if;
+	end process;
+ 
+	oSens <= bSens;
+	oImp <= bImp;
+	Led <= bSens;
+	
+	-- Partie debug
+	oDebug <= 
+		"00" when nextstate = S0 else
+		"01" when nextstate = S1 else
+		"10" when nextstate = S2 else
+		"11" when nextstate = S3;
+end architecture;

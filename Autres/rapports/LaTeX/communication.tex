@@ -1,0 +1,30 @@
+%Communications
+\subsection{Arduino - Arduino}
+\label{sub:EntreArduinos}
+
+Entre arduinos, nous avons choisi d'utiliser l'\textbf{I\up{2}C}. En effet, c'est le type de communication le plus léger à implémenter et le plus facile à mettre en œuvre permettant d'avoir plusieurs esclaves. De plus, il était nécessaire de \textit{standardiser} les communications et nous avons donc développé une librairie basique. Ainsi, on envoie TOUJOURS 2 bytes selon la trame que l'on peut voir à la table~\ref{tb:TrameI2C} et lorsque l'on demande des valeurs, l'esclave répondra toujours 2 bytes de données.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		adresse & fonction & data & data \\
+		\hline
+		7 bits & 4 bits & 4 bits & 8 bits \\
+		\hline
+	\end{tabular}
+	\caption{Trame I\up{2}C}
+	\label{tb:TrameI2C}
+\end{table}
+
+\subsection{Arduino - DE0nano}
+Nous utiliserons la DE0nano dans un premier temps comme un simple prescaler divisant par 16 la fréquence des impulsions envoyées par les roues codeuses, donc la communication se fera par simple \og transfert de signal\fg, via les GPIO. Il n'y a donc pas vraiment de communication à proprement parler. 
+
+\subsection{Arduino - Raspberry Pi}
+Malheureusement, la Raspberry Pi n'est pas capable d'être un esclave I\up{2}C à cause de son incapacité au temps réel. De plus, l'ajouter en temps que maître sur le bus impliquerait l'implémentation d'un système de détection de collision des paquets, ce qui devient fort lourd à mettre en place. Dès lors, nous utiliserons une communication SPI ou RS232 pour transmettre les informations de la Raspberry. Pour rappel, elle ne servira dans un premier temps que pour trouver les objets et transmettre une information telle que :\\
+
+\og 1 : balle en 210 x 400, 2 : verre en 300 x 250\fg\\
+
+\noindent Il sera aussi possible, avec une détection et un traitement plus efficace de donner comme information : \\
+
+\og 1: 10cm, 40\angle\fg\\

@@ -1,0 +1,245 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -3.807
+TNS   : -32.428
+
+Type  : Slow 1200mV 85C Model Setup 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -3.013
+TNS   : -26.488
+
+Type  : Slow 1200mV 85C Model Setup 'iRst'
+Slack : -2.346
+TNS   : -29.480
+
+Type  : Slow 1200mV 85C Model Setup 'iClk'
+Slack : -2.236
+TNS   : -109.089
+
+Type  : Slow 1200mV 85C Model Hold 'iRst'
+Slack : -1.124
+TNS   : -1.899
+
+Type  : Slow 1200mV 85C Model Hold 'iClk'
+Slack : -0.396
+TNS   : -0.788
+
+Type  : Slow 1200mV 85C Model Hold 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : 0.050
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : 0.107
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -0.858
+TNS   : -8.023
+
+Type  : Slow 1200mV 85C Model Recovery 'iClk'
+Slack : -0.810
+TNS   : -5.900
+
+Type  : Slow 1200mV 85C Model Recovery 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -0.575
+TNS   : -5.446
+
+Type  : Slow 1200mV 85C Model Recovery 'iRst'
+Slack : 0.423
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'iRst'
+Slack : -0.874
+TNS   : -15.273
+
+Type  : Slow 1200mV 85C Model Removal 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : 0.021
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : 0.050
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'iClk'
+Slack : 0.463
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'iClk'
+Slack : -3.000
+TNS   : -55.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'iRst'
+Slack : -3.000
+TNS   : -21.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -1.000
+TNS   : -9.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -1.000
+TNS   : -9.000
+
+Type  : Slow 1200mV 0C Model Setup 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -3.336
+TNS   : -28.491
+
+Type  : Slow 1200mV 0C Model Setup 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -2.692
+TNS   : -23.101
+
+Type  : Slow 1200mV 0C Model Setup 'iRst'
+Slack : -1.967
+TNS   : -24.284
+
+Type  : Slow 1200mV 0C Model Setup 'iClk'
+Slack : -1.956
+TNS   : -93.805
+
+Type  : Slow 1200mV 0C Model Hold 'iRst'
+Slack : -1.077
+TNS   : -1.827
+
+Type  : Slow 1200mV 0C Model Hold 'iClk'
+Slack : -0.413
+TNS   : -0.823
+
+Type  : Slow 1200mV 0C Model Hold 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : 0.028
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : 0.105
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'iClk'
+Slack : -0.690
+TNS   : -4.896
+
+Type  : Slow 1200mV 0C Model Recovery 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -0.672
+TNS   : -6.312
+
+Type  : Slow 1200mV 0C Model Recovery 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -0.450
+TNS   : -4.311
+
+Type  : Slow 1200mV 0C Model Recovery 'iRst'
+Slack : 0.512
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'iRst'
+Slack : -0.836
+TNS   : -14.481
+
+Type  : Slow 1200mV 0C Model Removal 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : 0.065
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : 0.081
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'iClk'
+Slack : 0.454
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'iClk'
+Slack : -3.000
+TNS   : -55.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'iRst'
+Slack : -3.000
+TNS   : -21.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -1.000
+TNS   : -9.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -1.000
+TNS   : -9.000
+
+Type  : Fast 1200mV 0C Model Setup 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -1.674
+TNS   : -13.443
+
+Type  : Fast 1200mV 0C Model Setup 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -1.479
+TNS   : -10.071
+
+Type  : Fast 1200mV 0C Model Setup 'iRst'
+Slack : -0.944
+TNS   : -9.525
+
+Type  : Fast 1200mV 0C Model Setup 'iClk'
+Slack : -0.888
+TNS   : -37.572
+
+Type  : Fast 1200mV 0C Model Hold 'iRst'
+Slack : -0.526
+TNS   : -0.870
+
+Type  : Fast 1200mV 0C Model Hold 'iClk'
+Slack : -0.406
+TNS   : -0.843
+
+Type  : Fast 1200mV 0C Model Hold 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : 0.044
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : 0.051
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -0.655
+TNS   : -5.895
+
+Type  : Fast 1200mV 0C Model Recovery 'iClk'
+Slack : -0.646
+TNS   : -4.740
+
+Type  : Fast 1200mV 0C Model Recovery 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -0.459
+TNS   : -4.131
+
+Type  : Fast 1200mV 0C Model Recovery 'iRst'
+Slack : -0.063
+TNS   : -0.567
+
+Type  : Fast 1200mV 0C Model Removal 'iRst'
+Slack : -0.512
+TNS   : -8.883
+
+Type  : Fast 1200mV 0C Model Removal 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -0.044
+TNS   : -0.396
+
+Type  : Fast 1200mV 0C Model Removal 'iClk'
+Slack : 0.052
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : 0.098
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'iClk'
+Slack : -3.000
+TNS   : -57.285
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'iRst'
+Slack : -3.000
+TNS   : -30.784
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'roue_codeuse:rcD|FiltreHall:U0|CodeurFil'
+Slack : -1.000
+TNS   : -9.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'roue_codeuse:rcG|FiltreHall:U0|CodeurFil'
+Slack : -1.000
+TNS   : -9.000
+
+------------------------------------------------------------

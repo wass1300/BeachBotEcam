@@ -1,0 +1,35 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+
+ENTITY clk_div IS
+	PORT(
+		iClk, iRst : IN std_logic;
+		oData : OUT std_logic
+	);
+END ENTITY clk_div;
+
+ARCHITECTURE arch OF clk_div IS
+SIGNAL bCount_Next : std_logic_vector(27 DOWNTO 0);
+signal bNew_clk : std_logic;
+BEGIN
+	detection: PROCESS(iClk, iRst)
+	variable bCount_Current : std_logic_vector(27 DOWNTO 0);
+	BEGIN
+		IF (iRst = '0') THEN
+			bCount_Current := x"0000000";
+			bNew_clk <= '0';
+			oData <= '0';
+		ELSIF rising_edge(iClk) THEN
+			bCount_Current := bCount_Next;
+			if (bCount_Current = x"04F4240") then
+				bCount_Current := x"0000000";
+				bNew_clk <= not(bNew_clk);
+				oData <= bNew_clk;
+			end if;
+		END IF;
+		
+		bCount_Next <= bCount_Current + '1';
+	END PROCESS detection;
+END ARCHITECTURE arch;

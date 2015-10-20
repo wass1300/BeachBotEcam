@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_signed.all;
+
+entity top is 
+	port (
+		icodeurAD, icodeurBD : in std_logic;
+		icodeurAG, icodeurBG : in std_logic;
+		iRst, iClk : in std_logic;
+		oImpD, oImpG : out std_logic;
+		oSensD, oSensG : out std_logic
+	);
+end entity;
+
+architecture behavior of top is
+
+component roue_codeuse is 
+	port (
+		icodeurA, icodeurB : in std_logic;
+		iRst, iClk : in std_logic;
+		oImp : out std_logic;
+		oSens : out std_logic;
+		--oDebug : out std_logic_vector(1 downto 0);
+		--Led : out std_logic
+	);
+end component;
+
+end architecture;

@@ -1,0 +1,61 @@
+\documentclass{beamer}
+\usepackage{ucs}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[utf8x]{inputenc} % ou utf8x au lieu
+\usepackage[T1]{fontenc} % de latin 1
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{listings}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usetheme{Singapore}
+\beamertemplatenavigationsymbolsempty
+\setbeamerfont{page number in head/foot}{size=\footnotesize}
+\setbeamertemplate{footline}[frame number]
+
+\title{{\huge Eurobot 2015, BetterWithMotors}} 
+\author{José-Carlos Alves Da Costa\\
+	Mounïme Bouzanih\\
+	Louis Defauw\\
+	Arnaud Iserentant\\
+	Abdelhak Kotati\\
+	Nabil Nehri\\
+	Alexis Paques}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+	\item Gestion du projet;
+	\item Table et actions du robot;
+	\item Architecture;
+	\item Communication entre les cartes;
+	\item Régulation des moteurs;
+	\item Châssis;
+	\item Pince;
+	\item Moteurs et drivers;
+	\item Perspectives.
+\end{itemize}
+\end{frame}
+
+\input{gestion.tex}
+\input{table_actions.tex}
+\input{architecture.tex}
+\input{communication.tex}
+\input{regulation.tex}
+\input{chassis.tex}
+\input{pince.tex}
+\input{moteurs.tex}
+\input{perspectives.tex}
+
+\begin{frame}
+\begin{center}
+{\Huge Des questions ?}
+\end{center}
+\end{frame}
+
+\end{document}

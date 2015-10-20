@@ -1,0 +1,78 @@
+\documentclass[a4paper ,11pt]{report}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{ucs}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[utf8x]{inputenc} % ou utf8x au lieu
+\usepackage[T1]{fontenc} % de latin 1
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{listings}
+\usepackage{subfigure}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\begin{figure}
+    \includegraphics[height=3cm]{Eurobot.png}
+   	\hfill
+    \includegraphics[height=3cm]{ecam.jpg}
+\end{figure}
+\end{center}
+\vspace{4cm}
+\begin{center}
+	{\Huge Eurobot 2014--2015, BetterWithMotors\\}
+	{\huge Rapport intermédiaire\\}
+	\vspace{1.5cm}
+	José-Carlos Alves Da Costa\\
+	Mounïme Bouzanih\\
+	Louis Defauw\\
+	Arnaud Iserentant\\
+	Abdelhak Kotati\\
+	Nabil Nehri\\
+	Alexis Paques
+	\vfill
+	\today
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\chapter{Gestion}
+\input{gestion.tex}
+
+\chapter{Technique}
+\section{Table et actions}
+\input{table_actions.tex}
+
+\newpage
+\section{Architecture}
+\input{architecture.tex}
+
+\newpage
+\section{Communications}
+\input{communication.tex}
+
+\newpage
+\section{Régulation}
+\input{regulation.tex}
+
+\newpage
+\section{Châssis}
+\input{chassis.tex}
+
+\newpage
+\section{Pince}
+\input{pince.tex}
+
+\newpage
+\section{Dimensionnement des moteurs}
+\input{moteurs.tex}
+
+\newpage
+\chapter{Perspectives}
+\input{perspectives.tex}
+
+\end{document}
