@@ -35,6 +35,12 @@
 // Send LSB to MSB
 #define LSBTOMSB(x) byte(x << 4)
 
+// Motors
+#define DIR1 31
+#define PWM1 11
+#define DIR2 30
+#define PWM2 10
+
 /*
  * Gobal variable
  */
@@ -51,6 +57,12 @@ void setup()
   Wire.onReceive(GotBytes);
   
   pinMode(13, OUTPUT);
+  
+  // Motor command connections
+  pinMode(DIR1,OUTPUT);
+  pinMode(PWM1,OUTPUT);
+  pinMode(DIR2,OUTPUT);
+  pinMode(PWM2,OUTPUT);
 }
 
 void loop()
@@ -61,27 +73,60 @@ void loop()
       LedOff();
       DEBUG_MSGLN("Motor stopped");
       delay(100);
+      
+       // Motor command : forward
+      analogWrite(PWM1, 0);
+      analogWrite(PWM2, 0);
       break;
+      
     // Going forwards
     case 2:
       blinkLed(1000);
       DEBUG_MSGLN("Going forwards");
+      
+       // Motor command : forward
+      digitalWrite(DIR1, 1);
+      digitalWrite(DIR2, 1);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
+      
     // Going backwards
     case 3:
       blinkLed(500);
       DEBUG_MSGLN("Going backwards");
+      
+      // Motor Command : Right
+      digitalWrite(DIR1, 0);
+      digitalWrite(DIR2, 0);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
+      
     // Turning left
     case 4:
       blinkLed(250);
       DEBUG_MSGLN("Turning left");
+      
+      // Motor Command : Left
+      digitalWrite(DIR1, 1);
+      digitalWrite(DIR2, 0);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
+      
     // Turning right
     case 5:
       blinkLed(100);
       DEBUG_MSGLN("Turning right");
+      
+      // Motor Command : Stop
+      digitalWrite(DIR1, 0);
+      digitalWrite(DIR2, 1);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
+      
     // In case of any other action
     default:
       DEBUG_MSGLN("Invalid action");
