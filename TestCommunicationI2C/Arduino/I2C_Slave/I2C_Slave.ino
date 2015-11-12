@@ -74,7 +74,7 @@ void loop()
       DEBUG_MSGLN("Motor stopped");
       delay(100);
       
-       // Motor command : forward
+       // Motor command : stop
       analogWrite(PWM1, 0);
       analogWrite(PWM2, 0);
       break;
@@ -96,7 +96,7 @@ void loop()
       blinkLed(500);
       DEBUG_MSGLN("Going backwards");
       
-      // Motor Command : Right
+      // Motor Command : backward
       digitalWrite(DIR1, 0);
       digitalWrite(DIR2, 0);
       analogWrite(PWM1, 127);
@@ -120,7 +120,7 @@ void loop()
       blinkLed(100);
       DEBUG_MSGLN("Turning right");
       
-      // Motor Command : Stop
+      // Motor Command : Right
       digitalWrite(DIR1, 0);
       digitalWrite(DIR2, 1);
       analogWrite(PWM1, 127);
