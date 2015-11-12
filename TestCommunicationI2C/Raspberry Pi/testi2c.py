@@ -1,10 +1,10 @@
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-@author: Louis Defauw & Alexis Paques
-@date: 18.03.2015
-@note: Test de la communication i2c
-@todo: Vérifier la réception de l'array de bytes
+@author: Gauthier Linard & Guillaume Verfaille
+@date: 02.11.2015
+@note: Test of the i2c communication
 """
 
 from struct import *
@@ -23,20 +23,22 @@ def read(self):
 	return data
 
 def liste(xy):
-	x = xy >> 8
-	y = xy & 255
+	x = xy >> 8 # take the MSB
+	y = xy & 255 # take the rest
 	return [x,y]
 
-def pack(x, y):
+# x is the type of action and y is the data to be send
+# return 16 bits
+def pack(x, y): 
 	if x <= 15 and x >= 0:
-		x = x << 12
+		x = x << 12 # add 12 times 0
 	else:
 		x = 0
 	if y > 4095 or y < 0:
 		y = 0
-	return (x + y)
+	return (x + y) # concatenate x and y
 
-def unPack(data):
+def unPack(data): 
 	d = unpack('bbbb',data[0])
 	x = (d[0] << 8) + d[1]
 	y = (d[2] << 8) + d[3]
@@ -44,7 +46,7 @@ def unPack(data):
 
 class MotorsI2CFunctions():
 	def __init__(self):
-		self.address = 8
+		self.address = 8 # address of the slave card you can find it with the command i2cdetect -y 1
 		self.bus = i2c.I2CMaster()
 
 	def stop(self):
@@ -68,20 +70,30 @@ class MotorsI2CFunctions():
 		send(data,self)
 
 	def getXY(self):
-		data = read(4,self)
+		data = read(self)
 		XY = unPack(data)
 		return XY
 
 mo = MotorsI2CFunctions()
 
-mo.forward(10)
+mo.forward(50)
 
-time.sleep(1)
+time.sleep(5)
+
+mo.forward(50)
+
+time.sleep(5)
 
 mo.turnRight(10)
 
-time.sleep(1)
+time.sleep(5)
 
-print(mo.getXY())
+mo.backward(50)
 
-time.sleep(1)
+time.sleep(5)
+
+mo.turnLeft(60)
+
+time.sleep(5)
+
+mo.stop()
