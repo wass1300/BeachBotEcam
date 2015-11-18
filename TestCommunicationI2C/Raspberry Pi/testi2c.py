@@ -1,6 +1,6 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 """
 @author: Gauthier Linard & Guillaume Verfaille
 @date: 02.11.2015
@@ -22,13 +22,14 @@ def read(self):
 	print(data)
 	return data
 
+# Returns the array [x, y]. x and y are on 8 bits each. 
 def liste(xy):
-	x = xy >> 8 # take the MSB
-	y = xy & 255 # take the rest
+	x = xy >> 8 # Take the MSB
+	y = xy & 255 # Take the rest
 	return [x,y]
 
 # x is the type of action and y is the data to be send
-# return 16 bits
+# Returns 16 bits
 def pack(x, y): 
 	if x <= 15 and x >= 0:
 		x = x << 12 # add 12 times 0
@@ -38,6 +39,10 @@ def pack(x, y):
 		y = 0
 	return (x + y) # concatenate x and y
 
+# The unpack function unpack the string according to the given format (see https://docs.python.org/2/library/struct.html#struct.unpack)
+# data is the return string from the I2C communication
+# d is an array of 4 * 8 bytes
+# Returns the array [x, y]. x and y are on 16 bits each.
 def unPack(data): 
 	d = unpack('bbbb',data[0])
 	x = (d[0] << 8) + d[1]
@@ -46,7 +51,7 @@ def unPack(data):
 
 class MotorsI2CFunctions():
 	def __init__(self):
-		self.address = 8 # address of the slave card you can find it with the command i2cdetect -y 1
+		self.address = 8 # Address of the slave card you can find it with the command i2cdetect -y 1
 		self.bus = i2c.I2CMaster()
 
 	def stop(self):
