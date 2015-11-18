@@ -8,19 +8,6 @@
  */
 #define MYADRESS 8
 
-#define DEBUG true
-
-/* DEBUG */
-#if DEBUG
-#define DEBUG_MSG(m); Serial.print(m);
-#define DEBUG_MSGLN(m); Serial.println(m);
-#define DEBUG_BEGIN(d); Serial.begin(d);
-#else
-#define DEBUG_MSG(m);
-#define DEBUG_MSGLN(m); 
-#define DEBUG_BEGIN(d);
-#endif
-
 /* MACROS I2C */
 // Most significant byte of uint16_t
 #define MSB(xx) byte(xx >> 8)
@@ -51,7 +38,6 @@ byte actionToDo = 1;
  */
 void setup()
 {
-  DEBUG_BEGIN(9600);
   Wire.begin(MYADRESS);
   Wire.onRequest(Answer);
   Wire.onReceive(GotBytes);
@@ -123,29 +109,10 @@ void GotBytes(int howMany)
     uint16_t data = PACK(DATA(funcdata), datab); // Pack the 2 bytes into 16 bits
     
     actionToDo = function;
-    
-    DEBUG_MSGLN(function);
-    DEBUG_MSGLN(funcdata);
-    DEBUG_MSGLN(data);
-    DEBUG_MSGLN(datab);
   } else { // If more than 2 bytes received, we read doing nothing
     while(Wire.available()){
       Wire.read();
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
