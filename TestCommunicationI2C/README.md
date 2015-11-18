@@ -41,7 +41,12 @@ Le fichier I2C_Slave.ino permet de "décortiquer" les données reçues et de les
 
 La fonction principale *loop()* fait clignoter des LEDs plus ou moins rapidement en fonction de l'action qu'elle a reçue à exécuter.
 
-Ce fichier doit être transversé sur l'Arduino.
+Ce fichier doit être transversé sur une Arduino.
+
+### Le fichier I2C_Slave_To_Motor.ino
+Le fichier I2C_Slave_To_Motor.ino est équivalent à l'autre fichier (I2C_Slave.ino). La seule différence est qu'il permet de tester le bon fonctionnement des moteurs du robot.
+
+Ce fichier doit donc être transverser sur l'Arduino du robot.
 
 ## Connexion entre les 2 cartes
 Avant d'exécuter les 2 fichiers, il ne faut pas oublier d'activer la communication I2C sur la Raspberry et de choisir l'adresse du communication des 2 cartes (par défaut 8).
