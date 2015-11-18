@@ -1,5 +1,5 @@
 /* 
- * Test fonctionnant avec le fichier testi2c.py pour la Raspberry Pi 
+ * Test fonctionnant avec le fichier testi2c.py pour la Raspberry Pi - COMMANDE MOTEUR
  */
 #include <Wire.h>
 
@@ -56,48 +56,48 @@ void setup()
   Wire.onRequest(Answer);
   Wire.onReceive(GotBytes);
   
-  pinMode(13, OUTPUT);
+  // Motors Driver pins
+  pinMode(DIR1,OUTPUT);
+  pinMode(PWM1,OUTPUT);
+  pinMode(DIR2,OUTPUT);
+  pinMode(PWM2,OUTPUT);
 }
 
 void loop()
 {
   switch(actionToDo)
   {
-    // Stop the motor
-    case 1:
-      LedOff();
-      DEBUG_MSGLN("Motor stopped");
-      delay(100);
+    case 2 : // forward
+      digitalWrite(DIR1, 1);
+      digitalWrite(DIR2, 1);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
-     
-    // Going forwards
-    case 2:
-      blinkLed(1000);
-      DEBUG_MSGLN("Going forwards");
+	  
+    case 4 : // left
+      digitalWrite(DIR1, 1);
+      digitalWrite(DIR2, 0);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
-      
-    // Going backwards
-    case 3:
-      blinkLed(500);
-      DEBUG_MSGLN("Going backwards");
+	  
+    case 5 : // right
+      digitalWrite(DIR1, 0);
+      digitalWrite(DIR2, 1);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
-      
-    // Turning left
-    case 4:
-      blinkLed(250);
-      DEBUG_MSGLN("Turning left");
+	  
+    case 3 : // backward
+      digitalWrite(DIR1, 0);
+      digitalWrite(DIR2, 0);
+      analogWrite(PWM1, 127);
+      analogWrite(PWM2, 127);
       break;
-      
-    // Turning right
-    case 5:
-      blinkLed(100);
-      DEBUG_MSGLN("Turning right");
-      break;
-      
-    // In case of any other action
-    default:
-      DEBUG_MSGLN("Invalid action");
-      delay(25);
+	  
+    default: // stop if default
+      analogWrite(PWM1, 0);
+      analogWrite(PWM2, 0);
       break;
   }
 }
@@ -135,21 +135,17 @@ void GotBytes(int howMany)
   }
 }
 
-void LedOn()
-{
-  digitalWrite(13, HIGH);
-}
 
-void LedOff()
-{
-  digitalWrite(13, LOW);
-}
 
-void blinkLed(int delayTime)
-{
-  LedOn();
-  delay(delayTime);
-  LedOff();
-  delay(delayTime);
-}
+
+
+
+
+
+
+
+
+
+
+
 
