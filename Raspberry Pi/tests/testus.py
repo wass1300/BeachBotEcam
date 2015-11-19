@@ -13,48 +13,44 @@ import RPi.GPIO as GPIO
 import time
 import param
 
-GPIO.setmode(GPIO.BOARD)
-trig = [param.pinTrigAvD]
-echo = [param.pinEchoAvD]
-i = 0
-while i < len(trig):
-    GPIO.setup(trig[i], GPIO.OUT)
-    GPIO.setup(echo[i], GPIO.IN)
-    GPIO.output(trig[i], False)
-    i += 1
+# Configure GPIO
+GPIO.setmode(GPIO.BCM)
+trig = 27
+echo = 21
+
+GPIO.setup(trig, GPIO.OUT)
+GPIO.setup(echo, GPIO.IN)
+GPIO.output(trig, False)
 
 
 def run():
     print("Lancement des capteurs US en mode debug !")
-    distance = [0]
     while True:
-        i = 0
-        while i < len(trig):
-            distance[i] = measure(trig[i], echo[i])
-            # changer en measure() si trop long
-            i += 1
-        string = "SONAR:" + str(distance[0])
+		distance = measure(trig, echo)
+        string = "SONAR:" + str(distance)
         print(string)
         time.sleep(0.5)
 
 
 def measure(trig, echo):
+	# Prepare the signal
     time.sleep(0.0001)
     GPIO.output(trig, True)
     time.sleep(0.000001)
     GPIO.output(trig, False)
     start = time.time()
+	# Wait for the signal to be send
     while GPIO.input(echo) == 0:
         start = time.time()
+	# Wait for the signal to come back
     while GPIO.input(echo) == 1:
         elapsed = time.time() - start
-        if elapsed > 0.001:
+        if elapsed > 0.001: # Detect max 17cm (0.001*34.300) 
             break
     stop = time.time()
-    # stop = time.time()
+	
     totaltime = stop-start
     distance = (totaltime*34300)/2
-    # print(elapsed)
     return distance
 
 
@@ -62,9 +58,7 @@ def measure_average(trig, echo):
     distance1 = measure(trig, echo)
     distance2 = measure(trig, echo)
     distance3 = measure(trig, echo)
-    distance = distance1 + distance2 + distance3
-    distance = distance/3
-    return distance1
+    return (distance1 + distance2 + distance3)/3
 
 
 print("run")
