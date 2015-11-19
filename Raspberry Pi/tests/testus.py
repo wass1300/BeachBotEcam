@@ -11,7 +11,6 @@
 
 import RPi.GPIO as GPIO
 import time
-import param
 
 # Configure GPIO
 GPIO.setmode(GPIO.BCM)
@@ -22,7 +21,7 @@ GPIO.setup(trig, GPIO.OUT)
 GPIO.setup(echo, GPIO.IN)
 GPIO.output(trig, False)
 
-
+# Run the test
 def run():
     print("Lancement des capteurs US en mode debug !")
     while True:
@@ -31,7 +30,7 @@ def run():
         print(string)
         time.sleep(0.5)
 
-
+# Returns the measured distance
 def measure(trig, echo):
 	# Prepare the signal
     time.sleep(0.0001)
@@ -53,13 +52,12 @@ def measure(trig, echo):
     distance = (totaltime*34300)/2
     return distance
 
-
+# Returns the average distance of 3 signals
 def measure_average(trig, echo):
     distance1 = measure(trig, echo)
     distance2 = measure(trig, echo)
     distance3 = measure(trig, echo)
     return (distance1 + distance2 + distance3)/3
-
 
 print("run")
 run()
